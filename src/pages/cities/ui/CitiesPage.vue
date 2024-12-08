@@ -6,8 +6,10 @@
     </header>
     <div class="content">
       <CityDropdown :cities="cities" />
+
     </div>
   </div>
+  
 </template>
 
 <script lang="ts">
