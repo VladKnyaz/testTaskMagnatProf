@@ -1,14 +1,16 @@
 <template>
   <div class="city-dropdown">
     <div class="dropdown">
-      <input
-      type="text"
-      v-model="searchQuery"
-      @focus="onFocus"
-      @input="filterCities"
-      :placeholder="selectedCity ? selectedCity.name : 'Выберите город...'"/>
+      <div class="input">
+        <input
+        type="text"
+        v-model="searchQuery"
+        @focus="onFocus"
+        @input="filterCities"
+        :placeholder="selectedCity ? selectedCity.name : 'Выберите город...'"/>
+      </div>
     
-    <ul v-if="isDropdownOpen" class="dropdown-list">
+      <ul v-if="isDropdownOpen" class="dropdown-list">
         <li
           v-for="city in filteredCities"
           :key="city.id"
@@ -109,30 +111,38 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.carousel__item {
-  max-height: 200px;
-  max-width: 300px;
-  background-color: var(--vc-clr-primary);
-  color: var(--vc-clr-white);
-  font-size: 20px;
-  border-radius: 8px;
-  justify-content: center;
-  align-items: center;
-  img {
+.carousel {
+  
+  .carousel__item {
     max-height: 200px;
     max-width: 300px;
+    background-color: var(--vc-clr-primary);
+    color: var(--vc-clr-white);
+    font-size: 20px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 200px;
+      max-width: 300px;
+    }
+  }
+
+  .carousel__slide {
+    padding: 10px;
+  }
+
+
+  @media (max-width: 500px) {
+    width: 400px;
+  }
+  @media (max-width: 360px) {
+    width: 300px;
   }
 }
 
-.carousel__slide {
-  padding: 10px;
-}
 
-.carousel__prev,
-.carousel__next {
-  box-sizing: content-box;
-  border: 5px solid white;
-}
+
 .city-dropdown {
 
   margin-top: 60px;
@@ -143,22 +153,39 @@ export default defineComponent({
       position: relative;
       max-width: 230px;
       margin: 0 auto;
-      input {
+      .input {
         margin-bottom: 112px;
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
+        position: relative;
+        input {
+          width: 100%;
+          padding: 12px 16px;
+          border: 1px solid #000000;
+          border-radius: 8px;
+          box-sizing: border-box;
 
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            background: url('../images/arrow.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            right: 16px;
+            top: 8px;
+            margin: 0 auto;
+            width: 24px;
+            height: 24px;
+            
+        }
+      }
 
       .dropdown-list {
         position: absolute;
         top: 50px;
         left: 0;
         right: 0;
-        background: white;
+        background: #fff;
         border: 1px solid #ccc;
         border-radius: 4px;
         max-height: 200px;
