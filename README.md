@@ -37,4 +37,6 @@
   npm run preview
 ```
 
-Зайти на http://localhost:4173/
+Зайти на http://localhost:4173/    
+
+Чтобы редактировать данные городов, зайти в src/pages/cities/api/cities.api.ts
